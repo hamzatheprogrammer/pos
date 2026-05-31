@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>POS Login</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+
+  <!-- login page css -->
+  <link rel="stylesheet" href="css/login.css">
+
+  
+
+  
+
+</head>
+<body id="loginForm">
+
+  
+
+  <div class="login-container">
+
+    
+
+    <!-- Left Side -->
+    <div class="left-side">
+      <div class="pos-icon">🛒</div>
+      <h1>FLOW POS</h1>
+      <p>
+        login in to your account to manage your sales, inventory, and customers with ease. Our user-friendly interface and powerful features will help you streamline your business operations and boost your productivity.
+      </p>
+    </div>
+
+    <!-- Right Side -->
+    <div class="right-side">
+      
+      <div id="timedAlert"
+     class="alert alert-primary alert-dismissible fade p-0 overflow-hidden d-none"
+     role="alert">
+
+  <div class="p-3">
+    <strong id="alertTitle">Heads up!</strong>
+    <span id="alertMessage">This alert will disappear in 5 seconds.</span>
+
+    <button type="button"
+            class="btn-close"
+            id="closeAlert"
+            aria-label="Close">
+    </button>
+  </div>
+
+  <!-- Progress Bar -->
+  <div class="progress" style="height: 5px; border-radius: 0;">
+    <div id="alertProgressBar"
+         class="progress-bar"
+         role="progressbar"
+         style="width: 100%;">
+    </div>
+  </div>
+
+</div>
+
+      <h2>Welcome Back</h2>
+      <p class="subtitle">Login to continue</p>
+
+      
+
+      <form id="login-form">
+
+        <input type="text" class="form-control" id="username" placeholder="Enter Email" >
+
+        <input type="password" class="form-control" id="password" placeholder="Enter Password">
+
+        <div class="forgot">
+          <a href="./forgotpage.html">Forgot Password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary login-btn" id="login-btn">
+          Login
+        </button>
+
+      </form>
+
+      <div class="footer-text">
+        © 2026 POS System. All Rights Reserved.
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

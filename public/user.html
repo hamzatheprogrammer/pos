@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLOW POS Users</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Open sidebar" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <aside class="dashboard-sidebar" id="dashboardSidebar" aria-label="Dashboard sidebar">
+        <div class="sidebar-header">
+            <a class="sidebar-brand" href="/dashboard" aria-label="FLOW POS dashboard">
+                <span class="brand-mark">FP</span>
+                <span class="brand-copy">
+                    <strong>FLOW POS</strong>
+                    <small>Dashboard</small>
+                </span>
+            </a>
+
+            <button class="sidebar-close" id="sidebarClose" type="button" aria-label="Close sidebar">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <form class="sidebar-search" role="search">
+            <label for="dashboardSearch">Search</label>
+            <input id="dashboardSearch" type="search" placeholder="Search products, orders..." autocomplete="off">
+        </form>
+
+        <nav class="sidebar-nav">
+            <a class="sidebar-link" href="/dashboard">
+                <span class="link-icon">O</span>
+                Overview
+            </a>
+            <a class="sidebar-link active" href="/user">
+                <span class="link-icon">U</span>
+                Users
+            </a>
+            <a class="sidebar-link" id="InventoryLink" href="/inventory">
+                <span class="link-icon">I</span>
+                Inventory
+            </a>
+            <a class="sidebar-link" href="/additem">
+                <span class="link-icon">I</span>
+                Item
+            </a>
+            <a class="sidebar-link" href="/reports">
+                <span class="link-icon">R</span>
+                Reports
+            </a>
+            <a class="sidebar-link" href="/sale">
+                <span class="link-icon">S</span>
+                Sale
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a class="profile-card" href="#">
+                <span class="avatar">A</span>
+                <span>
+                    <strong id="RoleDisplay">Admin</strong>
+                    
+                </span>
+            </a>
+
+            <a class="logout-link" href="/logout">Logout</a>
+        </div>
+    </aside>
+
+    <main class="dashboard-main">
+        <header class="dashboard-topbar">
+            <div>
+                <p>User management</p>
+                <h1>Users</h1>
+            </div>
+            <button class="topbar-action" id="addUserButton" type="button">Add User</button>
+        </header>
+
+        <section class="user-panel">
+            <div class="table-header">
+                <div>
+                    <h2>Team accounts</h2>
+                    <p>Add, edit, and delete POS users.</p>
+                </div>
+                <input id="userSearch" type="search" placeholder="Search users..." autocomplete="off">
+            </div>
+
+            <div class="table-wrap">
+                <table class="user-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <tr>
+                            <td colspan="5" class="empty-state">Loading users...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal-backdrop" id="userModalBackdrop"></div>
+    <section class="user-modal" id="userModal" aria-labelledby="userModalTitle" aria-hidden="true">
+        <form class="user-form" id="userForm">
+            <div class="modal-header">
+                <div>
+                    <p id="userFormMode">New account</p>
+                    <h2 id="userModalTitle">Add User</h2>
+                </div>
+                <button class="modal-close" id="closeUserModal" type="button" aria-label="Close user form">
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+
+            <input id="userId" type="hidden">
+
+            <label for="username">Name</label>
+            <input id="username" name="username" type="text" placeholder="Enter user name" required>
+
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="name@example.com" required>
+
+            <label for="role">Role</label>
+            <select id="role" name="role" required>
+                <option value="user">Cashier</option>
+                <option value="manager">Manager</option>
+                <option value="admin">Admin</option>
+            </select>
+
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="Enter password">
+            <small id="passwordHelp">Required for new users. Leave blank when editing to keep the old password.</small>
+
+            <p class="form-message" id="formMessage"></p>
+
+            <div class="form-actions">
+                <button class="secondary-action" id="cancelUserForm" type="button">Cancel</button>
+                <button class="topbar-action" id="saveUserButton" type="submit">Save User</button>
+            </div>
+        </form>
+    </section>
+
+    <script src="js/dashboard.js"></script>
+    <script src="js/user.js"></script>
+</body>
+</html>

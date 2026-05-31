@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLOW POS Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- side bar -->
+    <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Open sidebar" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <aside class="dashboard-sidebar" id="dashboardSidebar" aria-label="Dashboard sidebar">
+        <div class="sidebar-header">
+            <a class="sidebar-brand" href="/dashboard" aria-label="FLOW POS dashboard">
+                <span class="brand-mark">FP</span>
+                <span class="brand-copy">
+                    <strong>FLOW POS</strong>
+                    <small>Dashboard</small>
+                </span>
+            </a>
+
+            <button class="sidebar-close" id="sidebarClose" type="button" aria-label="Close sidebar">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <form class="sidebar-search" role="search">
+            <label for="dashboardSearch">Search</label>
+            <input id="dashboardSearch" type="search" placeholder="Search products, orders..." autocomplete="off">
+        </form>
+
+        <nav class="sidebar-nav">
+            <a class="sidebar-link active" href="/dashboard">
+                <span class="link-icon">O</span>
+                Overview
+            </a>
+            <a class="sidebar-link" id="userLink" href="/user">
+                <span class="link-icon">U</span>
+                Users
+            </a>
+            <a class="sidebar-link" id="InventoryLink" href="/inventory">
+                <span class="link-icon">I</span>
+                Inventory
+            </a>
+            <a class="sidebar-link" id="AddItemLink" href="/additem">
+                <span class="link-icon">I</span>
+                Item
+            </a>
+            <a class="sidebar-link" id="ReportsLink" href="/reports">
+                <span class="link-icon">R</span>
+                Reports
+            </a>
+            <a class="sidebar-link" id="SaleLink" href="/sale">
+                <span class="link-icon">S</span>
+                Sale
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="notification-card" type="button">
+                <span class="notification-icon">
+                    <span class="notification-dot"></span>
+                    !
+                </span>
+                <span>
+                    <strong>Notifications</strong>
+                    <small>3 updates waiting</small>
+                </span>
+            </button>
+
+            <a class="profile-card" href="#">
+                <span class="avatar">A</span>
+                <span>
+                    <strong id="RoleDisplay"></strong>
+                </span>
+            </a>
+
+            <a class="logout-link" href="/logout">Logout</a>
+        </div>
+    </aside>
+
+    <main class="dashboard-main">
+        <header class="dashboard-topbar">
+            <div>
+                <p>Today at a glance</p>
+                <h1>Dashboard</h1>
+            </div>
+            <button class="topbar-action" id="newSaleButton" type="button">New Sale</button>
+        </header>
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-body">
+                                <canvas id="productschart" style="width:100px; height:200px; display:block;"></canvas>
+                                <strong style="font-weight: bolder; font-size: 2em; " id="productCount">0</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body"><canvas id="Piechart"
+                                style="width:100px; height:200px; display:block;"></canvas>
+                            <strong style="font-weight: bolder; font-size: 2em; " id="productCount">0</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">Card 3</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/chart.js"></script>
+
+    <!-- sidebar -->
+</body>
+
+</html>

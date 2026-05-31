@@ -1,0 +1,135 @@
+*{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      height:100vh;
+      background: linear-gradient(135deg,#0f172a,#1e293b,#334155);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      overflow:hidden;
+    }
+
+    .login-container{
+      width:950px;
+      background:#fff;
+      border-radius:25px;
+      overflow:hidden;
+      box-shadow:0 15px 40px rgba(0,0,0,0.3);
+      display:flex;
+    }
+
+    .left-side{
+      width:50%;
+      background: linear-gradient(135deg,#2563eb,#1d4ed8);
+      color:#fff;
+      padding:60px 40px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+    }
+
+    .left-side h1{
+      font-size:42px;
+      font-weight:700;
+      margin-bottom:20px;
+    }
+
+    .left-side p{
+      font-size:16px;
+      opacity:0.9;
+      line-height:1.8;
+    }
+
+    .pos-icon{
+      font-size:80px;
+      margin-bottom:25px;
+    }
+
+    .right-side{
+      width:50%;
+      padding:60px 50px;
+    }
+
+    .right-side h2{
+      font-weight:700;
+      margin-bottom:10px;
+      color:#0f172a;
+    }
+
+    .subtitle{
+      color:#64748b;
+      margin-bottom:35px;
+    }
+
+    .form-control{
+      height:50px;
+      border-radius:12px;
+      border:1px solid #d1d5db;
+      padding-left:15px;
+      margin-bottom:20px;
+    }
+
+    .form-control:focus{
+      box-shadow:none;
+      border-color:#2563eb;
+    }
+
+    .login-btn{
+      width:100%;
+      height:50px;
+      border:none;
+      border-radius:12px;
+      background:#2563eb;
+      color:#fff;
+      font-weight:600;
+      transition:0.3s;
+    }
+
+    .login-btn:hover{
+      background:#1d4ed8;
+    }
+
+    .forgot{
+      text-align:right;
+      margin-bottom:20px;
+    }
+
+    .forgot a{
+      text-decoration:none;
+      color:#2563eb;
+      font-size:14px;
+    }
+
+    .footer-text{
+      margin-top:25px;
+      text-align:center;
+      color:#64748b;
+      font-size:14px;
+    }
+
+    @media(max-width:900px){
+      .login-container{
+        flex-direction:column;
+        width:90%;
+      }
+
+      .left-side,
+      .right-side{
+        width:100%;
+      }
+
+      .left-side{
+        padding:40px 20px;
+      }
+
+      .right-side{
+        padding:40px 25px;
+      }
+    }

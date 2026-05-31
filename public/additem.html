@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLOW POS Items</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+    <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Open sidebar" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <aside class="dashboard-sidebar" id="dashboardSidebar" aria-label="Dashboard sidebar">
+        <div class="sidebar-header">
+            <a class="sidebar-brand" href="/dashboard" aria-label="FLOW POS dashboard">
+                <span class="brand-mark">FP</span>
+                <span class="brand-copy">
+                    <strong>FLOW POS</strong>
+                    <small>Dashboard</small>
+                </span>
+            </a>
+
+            <button class="sidebar-close" id="sidebarClose" type="button" aria-label="Close sidebar">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <form class="sidebar-search" role="search">
+            <label for="dashboardSearch">Search</label>
+            <input id="dashboardSearch" type="search" placeholder="Search products, orders..." autocomplete="off">
+        </form>
+
+        <nav class="sidebar-nav">
+            <a class="sidebar-link" href="/dashboard">
+                <span class="link-icon">O</span>
+                Overview
+            </a>
+            <a class="sidebar-link" id="userLink" href="/user">
+                <span class="link-icon">U</span>
+                Users
+            </a>
+            <a class="sidebar-link" id="InventoryLink" href="/inventory">
+                <span class="link-icon">I</span>
+                Inventory
+            </a>
+            <a class="sidebar-link active" id="AddItemLink" href="/additem">
+                <span class="link-icon">I</span>
+                Item
+            </a>
+            <a class="sidebar-link" id="ReportsLink" href="/reports">
+                <span class="link-icon">R</span>
+                Reports
+            </a>
+            <a class="sidebar-link " id="SaleLink" href="/sale">
+                <span class="link-icon">S</span>
+                Sale
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a class="profile-card" href="#">
+                <span class="avatar">A</span>
+                <span>
+                    <strong id="RoleDisplay">Admin</strong>
+
+                </span>
+            </a>
+
+            <a class="logout-link" href="/logout">Logout</a>
+        </div>
+    </aside>
+
+    <main class="Item-main">
+        <header class="dashboard-topbar">
+            <div>
+                <p>Here you can manage your products</p>
+                <h1>Item Management</h1>
+            </div>
+            <button class="topbar-action" id="openAddItemModal" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Add Items
+            </button>
+        </header>
+
+        <section class="items-section">
+            <div class="items-header">
+                <div>
+                    <h2>Category wise products</h2>
+                    <p>Products are grouped by their category.</p>
+                </div>
+                <div class="items-tools">
+                    <select id="categoryFilter" aria-label="Filter by category">
+                        <option value="all">All categories</option>
+                    </select>
+                    <input id="itemSearch" type="search" placeholder="Search items..." autocomplete="off">
+                    <button class="download-excel-btn" id="downloadExcelBtn" type="button">Download Excel</button>
+                </div>
+            </div>
+
+            <div class="items-grid" id="itemsGrid">
+                <p class="items-empty">Loading items...</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Item</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addItemForm">
+                        <input type="hidden" id="ItemId">
+                        <div class="mb-3">
+                            <label for="ItemImage" class="form-label">Item Image</label>
+                            <input type="url" class="form-control" id="ItemImage"
+                                aria-describedby="Add item image" placeholder="Add item image URL" required>
+                            
+                        </div>
+                        <div class="mb-3">
+                            <label for="ItemName" class="form-label">Item Name</label>
+                            <input type="text" class="form-control" id="ItemName" placeholder="Enter item name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="ItemCategory" class="form-label">Category</label>
+                            <input type="text" class="form-control" id="ItemCategory" list="categorySuggestions"
+                                placeholder="Enter category e.g. Drinks" required>
+                            <datalist id="categorySuggestions">
+                                <option value="Drinks"></option>
+                                <option value="Food"></option>
+                                <option value="Snacks"></option>
+                                <option value="Grocery"></option>
+                                <option value="General"></option>
+                            </datalist>
+                        </div>
+                        <div class="mb-3 ">
+                            <label for="ItemPrice" class="form-label">Item Price</label>
+                            <input type="number" class="form-control" id="ItemPrice" placeholder="Enter item price" min="0" step="0.01" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="ItemStock" class="form-label">Stock quantity (optional)</label>
+                            <input type="number" class="form-control" id="ItemStock" placeholder="Leave empty if not tracking stock" min="0" step="1">
+                            <small class="text-muted">When set, this number goes down each time the product is sold.</small>
+                        </div>
+                        <p class="item-form-message" id="itemFormMessage"></p>
+                        <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" id="saveItemBtn" class="btn btn-primary">Save Item</button>
+                </div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="js/addItem.js"></script>
+
+
+</body>
+
+</html>
