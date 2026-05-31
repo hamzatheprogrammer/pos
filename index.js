@@ -1,42 +1,39 @@
-const express = require('express')
-const routes = require('./router')
-const connectDB = require('./DBconnect')
+require('dotenv').config({ quiet: true });
+
+const express = require('express');
+const routes = require('./router');
+const connectDB = require('./DBconnect');
 const session = require('express-session');
 
+const port = process.env.PORT || 3000;
 
-connectDB()
+async function start() {
+    await connectDB();
 
+    const app = express();
 
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: true }));
 
-const app = express();
+    app.use(session({
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            secure: false,
+            maxAge: 1000 * 60 * 60
+        }
+    }));
 
-app.use(express.json());
+    app.use(routes);
+    app.use(express.static('public'));
 
-app.use(express.urlencoded({ extended: true }));
+    app.listen(port, () => {
+        console.log(`Server is running on port  http://localhost:${port}`);
+    });
+}
 
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-
-    cookie: {
-        secure: false, 
-        maxAge: 1000 * 60 * 60 
-    }
-}));
-
-
-
-
-
-
-
-app.use(routes)
-
-app.use(express.static('public'))
-
-
-
-app.listen(process.env.PORT, () => {
-  console.log('Server is running on port  http://localhost:3000')
-})
+start().catch((err) => {
+    console.error('Failed to start server:', err.message);
+    process.exit(1);
+});
