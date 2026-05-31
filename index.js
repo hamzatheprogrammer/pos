@@ -17,10 +17,10 @@ async function start() {
 
     app.use(session({
         secret: process.env.SESSION_SECRET,
-        resave: false,
-        saveUninitialized: false,
+        resave: true,
+        saveUninitialized: true,
         cookie: {
-            secure: false,
+            secure: true,
             maxAge: 1000 * 60 * 60
         }
     }));
