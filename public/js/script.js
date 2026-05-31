@@ -48,6 +48,7 @@ document.getElementById("login-form").addEventListener("submit", function (event
 
     fetch('/login', {
         method: 'POST',
+        credentials: 'same-origin',
         headers: {
             'Content-Type': 'application/json'
         },

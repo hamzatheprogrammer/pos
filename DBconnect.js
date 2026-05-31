@@ -105,11 +105,26 @@ function printAuthHelp() {
 }
 
 const connectDB = async () => {
+    if (mongoose.connection.readyState === 1) {
+        return mongoose.connection;
+    }
+
+    if (mongoose.connection.readyState === 2) {
+        await mongoose.connection.asPromise();
+        return mongoose.connection;
+    }
+
     const uri = getMongoUri();
 
     if (!uri || uri.includes('username:password') || uri.includes('/databaseName')) {
-        console.error('MongoDB connection failed: Fix .env — use real Atlas user/password and MONGO_DB=pos');
-        process.exit(1);
+        const message = 'Fix .env — use real Atlas user/password and MONGO_DB=pos';
+        console.error('MongoDB connection failed:', message);
+
+        if (!process.env.VERCEL) {
+            process.exit(1);
+        }
+
+        throw new Error(message);
     }
 
     try {
@@ -124,6 +139,7 @@ const connectDB = async () => {
 
         await mongoose.connect(connectionUri, options);
         console.log('MongoDB connected successfully');
+        return mongoose.connection;
     } catch (err) {
         console.error('MongoDB connection failed:', err.message);
 
@@ -134,7 +150,11 @@ const connectDB = async () => {
             console.error('Network/DNS tips: check internet, Atlas cluster not paused, or set MONGO_URI_DIRECT.');
         }
 
-        process.exit(1);
+        if (!process.env.VERCEL) {
+            process.exit(1);
+        }
+
+        throw err;
     }
 };
 
